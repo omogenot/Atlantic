@@ -3,16 +3,16 @@
 #include "FujiHeatPump.h"
 #include <ostream>
 
-// Instanciation de la bibliothèque de gestion du bus 3 fils Atlantic
+// Instanciation of 3 wire Atlantic heat pump controller
 FujiHeatPump hp;
 
-// Définition des broches UART pour l'ESP32-C3
+// Pin definitions for ESP32-C3
 #define LIN_RX_PIN 20
 #define LIN_TX_PIN 21
 #define BUTTON_PIN 9    // PROG button
 #define LED_PIN 10      // WiFi status LED
 
-// Structure du service HomeKit Thermostat complet
+// HomeKit complete Thermostat Homekit structure with all characteristics (including fan speed and swing mode)
 struct HK_CompleteThermostat : Service::Thermostat {
   
   SpanCharacteristic *currentMode;
@@ -33,16 +33,16 @@ struct HK_CompleteThermostat : Service::Thermostat {
 
     TemperatureDisplayUnits = new Characteristic::TemperatureDisplayUnits(0); // 0 = Celsius, 1 = Fahrenheit
 
-    // Vitesse du ventilateur (paliers de 25%)
+    // Fan speed (with 25% increments)
     fanSpeed = new Characteristic::RotationSpeed(50); 
     fanSpeed->setRange(0, 100, 25); 
 
-    // Oscillation des volets
+    // Swing mode (0 = Off, 1 = On)
     swingMode = new Characteristic::SwingMode(0);
   }
 
   boolean update() override {
-    // 1. Gestion des modes (Off / Chaud / Froid / Auto)
+    // Heating/Cooling mode (Off / Heat / Cool / Auto)
     if(targetMode->updated()) {
       int mode = targetMode->getNewVal();
       if(mode == 0) { 
@@ -55,13 +55,13 @@ struct HK_CompleteThermostat : Service::Thermostat {
       }
     }
 
-    // 2. Température cible
+    // 2. Target temperature
     if(targetTemp->updated()) {
       float temp = targetTemp->getNewVal();
       hp.setTemp((byte)temp);
     }
 
-    // 3. Vitesse de ventilation
+    // 3. Fan speed
     if(fanSpeed->updated()) {
       int pct = fanSpeed->getNewVal();
       if (pct == 0)       { hp.setFanMode(0); } // Auto
