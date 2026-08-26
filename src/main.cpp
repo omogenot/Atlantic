@@ -85,8 +85,12 @@ HK_CompleteThermostat *myClim = NULL;
 
 void setup() {
   // Init debug console via USB CDC
-  Serial.begin(115200, SERIAL_8N1, 18,19);  // Use alternate pins for Serial0
-  
+//  Serial.begin(115200, SERIAL_8N1, 18,19);  // Use alternate pins for Serial0
+  Serial.begin(115200);  // Use USB for Serial0
+  while (!Serial) {
+    delay(10);
+  }
+
   // Config secondary UART for LIN bus communication with the Atlantic heat pump
   // The Atlantic protocol uses a 500 baud rate with 8 data bits, even parity, and 1 stop bit (8E1)
   Serial1.begin(500, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
@@ -95,12 +99,12 @@ void setup() {
   hp.connect(&Serial1, true); 
 
   // Init HomeSpan accessory and services
-  homeSpan.setLogLevel(-1); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
+  homeSpan.setLogLevel(2); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
   
   homeSpan.setApSSID("Atlantic-AP");
   homeSpan.setApPassword(""); // Must be at least 8 characters if required
 //  homeSpan.enableAutoStartAP(); 
-  homeSpan.setSerialInputDisable(true); // Disable serial input to avoid conflicts with the LIN bus
+  homeSpan.setSerialInputDisable(false); // Disable serial input to avoid conflicts with the LIN bus
   homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
   homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
   homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");
