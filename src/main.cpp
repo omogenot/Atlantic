@@ -1,15 +1,16 @@
 #include <Arduino.h>
 #include "HomeSpan.h"
 #include "FujiHeatPump.h"
+#include <ostream>
 
 // Instanciation de la bibliothèque de gestion du bus 3 fils Atlantic
 FujiHeatPump hp;
 
 // Définition des broches UART pour l'ESP32-C3
-#define LIN_RX_PIN 20
-#define LIN_TX_PIN 21
-#define BUTTON_PIN 19
-#define LED_PIN 10
+#define LIN_RX_PIN 18
+#define LIN_TX_PIN 19
+#define BUTTON_PIN 9    // PROG button
+#define LED_PIN 10      // WiFi status LED
 
 // Structure du service HomeKit Thermostat complet
 struct HK_CompleteThermostat : Service::Thermostat {
@@ -20,6 +21,7 @@ struct HK_CompleteThermostat : Service::Thermostat {
   SpanCharacteristic *targetTemp;
   SpanCharacteristic *fanSpeed;
   SpanCharacteristic *swingMode;
+  SpanCharacteristic *TemperatureDisplayUnits;
   
   HK_CompleteThermostat() : Service::Thermostat() {
     currentMode = new Characteristic::CurrentHeatingCoolingState(0);
@@ -28,6 +30,8 @@ struct HK_CompleteThermostat : Service::Thermostat {
     currentTemp = new Characteristic::CurrentTemperature(21);
     targetTemp = new Characteristic::TargetTemperature(21);
     targetTemp->setRange(16, 30, 1); 
+
+    TemperatureDisplayUnits = new Characteristic::TemperatureDisplayUnits(0); // 0 = Celsius, 1 = Fahrenheit
 
     // Vitesse du ventilateur (paliers de 25%)
     fanSpeed = new Characteristic::RotationSpeed(50); 
@@ -85,14 +89,23 @@ void setup() {
   
   // Configuration de l'UART secondaire matériel pour le transceiver LIN
   // Le protocole Atlantic utilise une vitesse stricte de 19200 bauds en mode 8E1 (8 bits, parité paire, 1 stop bit)
-  Serial1.begin(19200, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
-  
+  //Serial1.begin(19200, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
+
+  Serial.println("Clim Atlantic PlatformIO - HomeSpan");
+
   // Connexion au bus en mode CONTROLEUR SECONDAIRE (paramètre true)
   // Indispensable pour laisser l'UTY-RNNUM d'origine opérer en maître sur le bus
-  hp.connect(&Serial1, true); 
+  // hp.connect(&Serial1, true); 
 
   // Initialisation de l'accessoire HomeSpan
-  homeSpan.setControlPin(BUTTON_PIN);
+#if 1
+  homeSpan.setLogLevel(0);
+  
+  homeSpan.setApSSID("Atlantic-AP");
+  homeSpan.setApPassword(""); // Must be at least 8 characters if required
+//  homeSpan.enableAutoStartAP(); 
+  homeSpan.setSerialInputDisable(true);
+  homeSpan.setControlPin(BUTTON_PIN,PushButton::TRIGGER_ON_LOW);
   homeSpan.setStatusPin(LED_PIN);
   homeSpan.begin(Category::Thermostats, "Clim Atlantic PlatformIO");
   
@@ -100,12 +113,15 @@ void setup() {
     new Service::AccessoryInformation();
       new Characteristic::Identify();
     myClim = new HK_CompleteThermostat();
+#endif
 }
 
 void loop() {
+
   // Traitement du protocole HomeKit
   homeSpan.poll();
 
+#if 0
   // Écoute en arrière-plan des trames du bus LIN partagé avec l'UTY-RNNUM
   if(hp.waitForFrame()) {
     // Retour d'état automatique si modification depuis le thermostat physique
@@ -127,4 +143,5 @@ void loop() {
     
     myClim->currentTemp->setVal(hp.getTemp());  
   }
+#endif
 }
