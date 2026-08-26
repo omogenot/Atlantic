@@ -7,8 +7,8 @@
 FujiHeatPump hp;
 
 // Définition des broches UART pour l'ESP32-C3
-#define LIN_RX_PIN 18
-#define LIN_TX_PIN 19
+#define LIN_RX_PIN 20
+#define LIN_TX_PIN 21
 #define BUTTON_PIN 9    // PROG button
 #define LED_PIN 10      // WiFi status LED
 
@@ -84,47 +84,42 @@ struct HK_CompleteThermostat : Service::Thermostat {
 HK_CompleteThermostat *myClim = NULL;
 
 void setup() {
-  // Initialisation de la console de debogage via USB CDC
-  Serial.begin(115200);
+  // Init debug console via USB CDC
+  Serial.begin(115200, SERIAL_8N1, 18,19);  // Use alternate pins for Serial0
   
-  // Configuration de l'UART secondaire matériel pour le transceiver LIN
-  // Le protocole Atlantic utilise une vitesse stricte de 19200 bauds en mode 8E1 (8 bits, parité paire, 1 stop bit)
-  //Serial1.begin(19200, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
+  // Config secondary UART for LIN bus communication with the Atlantic heat pump
+  // The Atlantic protocol uses a 500 baud rate with 8 data bits, even parity, and 1 stop bit (8E1)
+  Serial1.begin(500, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
 
-  Serial.println("Clim Atlantic PlatformIO - HomeSpan");
+  // Connect to bus as SECONDARY controller (the UTY-RNNUM is the PRIMARY controller)
+  hp.connect(&Serial1, true); 
 
-  // Connexion au bus en mode CONTROLEUR SECONDAIRE (paramètre true)
-  // Indispensable pour laisser l'UTY-RNNUM d'origine opérer en maître sur le bus
-  // hp.connect(&Serial1, true); 
-
-  // Initialisation de l'accessoire HomeSpan
-#if 1
-  homeSpan.setLogLevel(0);
+  // Init HomeSpan accessory and services
+  homeSpan.setLogLevel(-1); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
   
   homeSpan.setApSSID("Atlantic-AP");
   homeSpan.setApPassword(""); // Must be at least 8 characters if required
 //  homeSpan.enableAutoStartAP(); 
-  homeSpan.setSerialInputDisable(true);
-  homeSpan.setControlPin(BUTTON_PIN,PushButton::TRIGGER_ON_LOW);
-  homeSpan.setStatusPin(LED_PIN);
-  homeSpan.begin(Category::Thermostats, "Clim Atlantic PlatformIO");
+  homeSpan.setSerialInputDisable(true); // Disable serial input to avoid conflicts with the LIN bus
+  homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
+  homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
+  homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");
   
   new SpanAccessory();
     new Service::AccessoryInformation();
       new Characteristic::Identify();
     myClim = new HK_CompleteThermostat();
-#endif
 }
 
 void loop() {
 
-  // Traitement du protocole HomeKit
+  // Manage HomeKit protocol
   homeSpan.poll();
 
-#if 0
-  // Écoute en arrière-plan des trames du bus LIN partagé avec l'UTY-RNNUM
+  // Listen to the Atlantic heat pump bus for any changes
+  // (e.g., if the user changes settings directly on the thermostat)
   if(hp.waitForFrame()) {
-    // Retour d'état automatique si modification depuis le thermostat physique
+    // Automatically update HomeKit characteristics based on the current state of the heat pump
     byte currentFujiFan = hp.getFanMode();
     int targetPct = 0;
     if (currentFujiFan == 4) targetPct = 25;
@@ -143,5 +138,4 @@ void loop() {
     
     myClim->currentTemp->setVal(hp.getTemp());  
   }
-#endif
 }
