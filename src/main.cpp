@@ -108,6 +108,10 @@ void setup() {
   homeSpan.setSerialInputDisable(false); // Disable serial input to avoid conflicts with the LIN bus
   homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
   homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
+  new SpanAccessory();
+    new Service::AccessoryInformation();
+      new Characteristic::Identify();
+    myClim = new HK_CompleteThermostat();
 }
 static bool isFirstLoop = true;
 void loop() {
@@ -138,12 +142,7 @@ void loop() {
   if (isFirstLoop) {
     if (hp.hasReceivedFrame()) {
       isFirstLoop = false;
-      homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");
-      
-      new SpanAccessory();
-        new Service::AccessoryInformation();
-          new Characteristic::Identify();
-        myClim = new HK_CompleteThermostat();
+      homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");      
     } else {
       Serial.println("Waiting for first frame from heat pump...");
       delay(500); // Wait 0.5 seconds before checking again
