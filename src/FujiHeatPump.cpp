@@ -365,4 +365,7 @@ FujiFrame *FujiHeatPump::getUpdateState(){
 byte FujiHeatPump::getUpdateFields(){
     return updateFields;
 }
- 
+
+bool FujiHeatPump::hasReceivedFrame(){
+    return lastFrameReceived != 0;
+}

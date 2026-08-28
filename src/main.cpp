@@ -85,9 +85,10 @@ HK_CompleteThermostat *myClim = NULL;
 
 void setup() {
   // Init debug console via USB CDC
-//  Serial.begin(115200, SERIAL_8N1, 18,19);  // Use alternate pins for Serial0
-  Serial.begin(115200);  // Use USB for Serial0
-  while (!Serial) {
+  Serial.begin(115200);   // Use USB for Serial0
+  // Wait for Serial to be ready (up to 2 seconds)
+  uint32_t startTime = millis();
+  while (!Serial && (millis() - startTime < 2000)) {
     delay(10);
   }
 
@@ -107,18 +108,9 @@ void setup() {
   homeSpan.setSerialInputDisable(false); // Disable serial input to avoid conflicts with the LIN bus
   homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
   homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
-  homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");
-  
-  new SpanAccessory();
-    new Service::AccessoryInformation();
-      new Characteristic::Identify();
-    myClim = new HK_CompleteThermostat();
 }
-
+static bool isFirstLoop = true;
 void loop() {
-
-  // Manage HomeKit protocol
-  homeSpan.poll();
 
   // Listen to the Atlantic heat pump bus for any changes
   // (e.g., if the user changes settings directly on the thermostat)
@@ -142,4 +134,24 @@ void loop() {
     
     myClim->currentTemp->setVal(hp.getTemp());  
   }
+
+  if (isFirstLoop) {
+    if (hp.hasReceivedFrame()) {
+      isFirstLoop = false;
+      homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");
+      
+      new SpanAccessory();
+        new Service::AccessoryInformation();
+          new Characteristic::Identify();
+        myClim = new HK_CompleteThermostat();
+    } else {
+      Serial.println("Waiting for first frame from heat pump...");
+      delay(500); // Wait 0.5 seconds before checking again
+      return; // Wait until we have received a frame from the heat pump before proceeding with HomeKit initialization
+    }
+  }
+
+  // Manage HomeKit protocol
+  homeSpan.poll();
+
 }

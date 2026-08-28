@@ -121,6 +121,7 @@ class FujiHeatPump
     FujiFrame *getUpdateState();
     byte getUpdateFields();
     
+    bool hasReceivedFrame();
     bool debugPrint = false;
     
 };
