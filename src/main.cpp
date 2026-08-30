@@ -14,7 +14,7 @@ FujiHeatPump hp;
 
 // HomeKit complete Thermostat Homekit structure with all characteristics (including fan speed and swing mode)
 struct HK_CompleteThermostat : Service::Thermostat {
-  
+
   SpanCharacteristic *currentMode;
   SpanCharacteristic *targetMode;
   SpanCharacteristic *currentTemp;
@@ -108,18 +108,20 @@ void setup() {
   homeSpan.setSerialInputDisable(false); // Disable serial input to avoid conflicts with the LIN bus
   homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
   homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
+  digitalWrite(LED_PIN,HIGH);
   new SpanAccessory();
     new Service::AccessoryInformation();
       new Characteristic::Identify();
     myClim = new HK_CompleteThermostat();
 }
-static bool isFirstLoop = true;
+static int isFirstLoop = 60; // Wait 1 min. for first frame from heat pump before initializing HomeKit
 void loop() {
 
   // Listen to the Atlantic heat pump bus for any changes
   // (e.g., if the user changes settings directly on the thermostat)
   if(hp.waitForFrame()) {
     // Automatically update HomeKit characteristics based on the current state of the heat pump
+
     byte currentFujiFan = hp.getFanMode();
     int targetPct = 0;
     if (currentFujiFan == 4) targetPct = 25;
@@ -139,13 +141,14 @@ void loop() {
     myClim->currentTemp->setVal(hp.getTemp());  
   }
 
-  if (isFirstLoop) {
-    if (hp.hasReceivedFrame()) {
-      isFirstLoop = false;
+  if (--isFirstLoop > 0) {
+    if (hp.hasReceivedFrame() || (isFirstLoop < 2)) { // If we have received a frame from the heat pump, or if we have waited long enough, proceed with HomeKit initialization
+      isFirstLoop = 0;
       homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");      
     } else {
       Serial.println("Waiting for first frame from heat pump...");
       delay(500); // Wait 0.5 seconds before checking again
+      digitalWrite(LED_PIN,(digitalRead(LED_PIN) == LOW) ? HIGH : LOW); // Blink the status LED to indicate waiting for the first frame
       return; // Wait until we have received a frame from the heat pump before proceeding with HomeKit initialization
     }
   }
