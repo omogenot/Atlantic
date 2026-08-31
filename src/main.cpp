@@ -139,6 +139,8 @@ void loop() {
     }
     
     myClim->currentTemp->setVal(hp.getTemp());  
+    delay(55);              // frames should be sent 50-60ms after recieving - potentially other work can be done here
+    hp.sendPendingFrame();  // send any frame waiting in the buffer
   }
 
   if (--isFirstLoop > 0) {

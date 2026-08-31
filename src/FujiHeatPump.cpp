@@ -275,8 +275,8 @@ bool FujiHeatPump::waitForFrame() {
             pendingFrame = true;
                         
 
-        } else if (ff.messageDest == static_cast<byte>(FujiAddress::SECONDARY)) {
-            seenSecondaryController = true;
+        } else if (ff.messageDest != static_cast<byte>(FujiAddress::UNIT)) {
+            seenSecondaryController = (controllerIsPrimary) ? true : false;
             currentState.controllerTemp = ff.controllerTemp; // we dont have a temp sensor, use the temp reading from the secondary controller
         }
         
