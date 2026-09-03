@@ -1,16 +1,27 @@
 #include <Arduino.h>
 #include "HomeSpan.h"
+#define private protected // Re-define private as protected to allow access to private members of FujiHeatPump for the extended class
 #include "FujiHeatPump.h"
+#undef private
 #include <ostream>
 
 // Instanciation of 3 wire Atlantic heat pump controller
-FujiHeatPump hp;
+class FujiHeatPumpExt : public FujiHeatPump {
+  public:
+    FujiHeatPumpExt() : FujiHeatPump() {}
+    bool isBound() {
+      // Fix a missing test in genuine function to check if a frame has been received before checking if the controller is bound
+      return (lastFrameReceived) ? FujiHeatPump::isBound() : false;  // Call the base class method to check if the controller is bound
+    }
+};
+FujiHeatPumpExt hp;
 
 // Pin definitions for ESP32-C3
 #define LIN_RX_PIN 20
 #define LIN_TX_PIN 21
 #define BUTTON_PIN 9    // PROG button
 #define LED_PIN 10      // WiFi status LED
+#define HOSTNAME        "Clim Atlantic"  // Hostname for the ESP32-C3 device
 
 // HomeKit complete Thermostat Homekit structure with all characteristics (including fan speed and swing mode)
 struct HK_CompleteThermostat : Service::Thermostat {
@@ -98,10 +109,11 @@ void setup() {
 
   // Connect to bus as SECONDARY controller (the UTY-RNNUM is the PRIMARY controller)
   hp.connect(&Serial1, true); 
-
+  //hp.debugPrint = true; // Set to true to enable debug output of frames sent/received on the LIN bus
+  
   // Init HomeSpan accessory and services
   homeSpan.setLogLevel(2); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
-  
+  WiFi.setHostname(HOSTNAME); 
   homeSpan.setApSSID("Atlantic-AP");
   homeSpan.setApPassword(""); // Must be at least 8 characters if required
 //  homeSpan.enableAutoStartAP(); 
@@ -109,6 +121,12 @@ void setup() {
   homeSpan.setControlPin(BUTTON_PIN);   // Set the pin for the PROG button to trigger HomeSpan actions
   homeSpan.setStatusPin(LED_PIN);       // Set the pin for the WiFi status LED
   digitalWrite(LED_PIN,HIGH);
+  homeSpan.setCompileTime(); 
+  // 1. Activate OTA (default password : "homespan-ota")
+  homeSpan.enableOTA(false); 
+  // 2. Activate the integrated web server (Max 50 messages in cache, NTP server, Time zone, Reltive URL)
+  // The page is http://<ESP32_IP>/status
+  homeSpan.enableWebLog(50, "pool.ntp.org", "CET-1CEST,M3.5.0,M10.5.0/3", "status");
   new SpanAccessory();
     new Service::AccessoryInformation();
       new Characteristic::Identify();
@@ -139,14 +157,14 @@ void loop() {
     }
     
     myClim->currentTemp->setVal(hp.getTemp());  
-    delay(55);              // frames should be sent 50-60ms after recieving - potentially other work can be done here
+    delay(55);              // frames should be sent 50-60ms after receiving - potentially other work can be done here
     hp.sendPendingFrame();  // send any frame waiting in the buffer
   }
 
   if (--isFirstLoop > 0) {
-    if (hp.hasReceivedFrame() || (isFirstLoop < 2)) { // If we have received a frame from the heat pump, or if we have waited long enough, proceed with HomeKit initialization
+    if (hp.isBound() || (isFirstLoop < 2)) { // If we have received a frame from the heat pump, or if we have waited long enough, proceed with HomeKit initialization
       isFirstLoop = 0;
-      homeSpan.begin(Category::Thermostats, "Clim Atlantic", "Atlantic");      
+      homeSpan.begin(Category::Thermostats, HOSTNAME, "Atlantic");      
     } else {
       Serial.println("Waiting for first frame from heat pump...");
       delay(500); // Wait 0.5 seconds before checking again
