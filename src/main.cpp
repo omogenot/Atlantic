@@ -108,11 +108,12 @@ void setup() {
   Serial1.begin(500, SERIAL_8E1, LIN_RX_PIN, LIN_TX_PIN);
 
   // Connect to bus as SECONDARY controller (the UTY-RNNUM is the PRIMARY controller)
+  hp.debugPrint = true; // Set to true to enable debug output of frames sent/received on the LIN bus
   hp.connect(&Serial1, true); 
-  //hp.debugPrint = true; // Set to true to enable debug output of frames sent/received on the LIN bus
+  Serial1.setTimeout(30); // Set a timeout for reading from the LIN bus
   
   // Init HomeSpan accessory and services
-  homeSpan.setLogLevel(2); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
+  homeSpan.setLogLevel(0); // -1 = no log, 0 = errors only, 1 = normal, 2 = verbose
   WiFi.setHostname(HOSTNAME); 
   homeSpan.setApSSID("Atlantic-AP");
   homeSpan.setApPassword(""); // Must be at least 8 characters if required
@@ -123,7 +124,7 @@ void setup() {
   digitalWrite(LED_PIN,HIGH);
   homeSpan.setCompileTime(); 
   // 1. Activate OTA (default password : "homespan-ota")
-  homeSpan.enableOTA(false); 
+  homeSpan.enableOTA(false);  // Enable OTA updates (false = no password, true = password required)
   // 2. Activate the integrated web server (Max 50 messages in cache, NTP server, Time zone, Reltive URL)
   // The page is http://<ESP32_IP>/status
   homeSpan.enableWebLog(50, "pool.ntp.org", "CET-1CEST,M3.5.0,M10.5.0/3", "status");
@@ -131,15 +132,14 @@ void setup() {
     new Service::AccessoryInformation();
       new Characteristic::Identify();
     myClim = new HK_CompleteThermostat();
+//  homeSpan.begin(Category::Thermostats, HOSTNAME, "Atlantic");      
 }
-static int isFirstLoop = 60; // Wait 1 min. for first frame from heat pump before initializing HomeKit
+bool isHomeSpanInitialized = false;
 void loop() {
-
   // Listen to the Atlantic heat pump bus for any changes
   // (e.g., if the user changes settings directly on the thermostat)
   if(hp.waitForFrame()) {
     // Automatically update HomeKit characteristics based on the current state of the heat pump
-
     byte currentFujiFan = hp.getFanMode();
     int targetPct = 0;
     if (currentFujiFan == 4) targetPct = 25;
@@ -148,32 +148,46 @@ void loop() {
     else if (currentFujiFan == 3) targetPct = 100;
     
     if(myClim->fanSpeed->getVal() != targetPct) {
+      Serial.printf("Updating HomeKit fan speed to %d%%\n", targetPct);
       myClim->fanSpeed->setVal(targetPct);
     }
-
     byte currentFujiSwing = hp.getSwingMode();
     if(myClim->swingMode->getVal() != currentFujiSwing) {
+      Serial.printf("Updating HomeKit swing mode to %d\n", currentFujiSwing);
       myClim->swingMode->setVal(currentFujiSwing);
     }
-    
-    myClim->currentTemp->setVal(hp.getTemp());  
-    delay(55);              // frames should be sent 50-60ms after receiving - potentially other work can be done here
-    hp.sendPendingFrame();  // send any frame waiting in the buffer
-  }
 
-  if (--isFirstLoop > 0) {
-    if (hp.isBound() || (isFirstLoop < 2)) { // If we have received a frame from the heat pump, or if we have waited long enough, proceed with HomeKit initialization
-      isFirstLoop = 0;
-      homeSpan.begin(Category::Thermostats, HOSTNAME, "Atlantic");      
-    } else {
-      Serial.println("Waiting for first frame from heat pump...");
-      delay(500); // Wait 0.5 seconds before checking again
-      digitalWrite(LED_PIN,(digitalRead(LED_PIN) == LOW) ? HIGH : LOW); // Blink the status LED to indicate waiting for the first frame
-      return; // Wait until we have received a frame from the heat pump before proceeding with HomeKit initialization
+    byte mode = hp.getOnOff() ? hp.getMode() : 0; // If the heat pump is off, set mode to 0 (off)
+    byte currentMode = 0;
+    if (mode == 0) {
+      currentMode = 0; // Off
+    } else if (mode == static_cast<byte>(FujiMode::HEAT)) {
+      currentMode = 1; // Heat
+    } else if (mode == static_cast<byte>(FujiMode::COOL)) {
+      currentMode = 2; // Cool
+    } else if (mode == static_cast<byte>(FujiMode::AUTO)) {
+      currentMode = 3; // Auto
+    }
+    if (myClim->currentMode->getVal() != currentMode) {
+      Serial.printf("Updating HomeKit current mode to %d\n", currentMode);
+      myClim->currentMode->setVal(currentMode);
+      myClim->targetMode->setVal(currentMode, false); // Also update the target mode to match the current mode
+    }
+    if (myClim->currentTemp->getVal() != hp.getControllerTemp()) {
+      Serial.printf("Updating HomeKit current temperature to %d\n", hp.getControllerTemp());
+      myClim->currentTemp->setVal(hp.getControllerTemp());
+    }
+    if (myClim->targetTemp->getVal() != hp.getTemp()) {
+      Serial.printf("Updating HomeKit target temperature to %d\n", hp.getTemp());
+      myClim->targetTemp->setVal(hp.getTemp(), false);
     }
   }
-
-  // Manage HomeKit protocol
-  homeSpan.poll();
-
+  hp.sendPendingFrame();  // send any frame waiting in the buffer
+  if(!isHomeSpanInitialized) {
+      homeSpan.begin(Category::Thermostats, HOSTNAME, "Atlantic");
+      isHomeSpanInitialized = true;
+  } else {
+    // Manage HomeKit protocol
+    homeSpan.poll();
+  }
 }
