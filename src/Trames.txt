@@ -1,0 +1,386 @@
+************************************************************
+Welcome to HomeSpan!
+Apple HomeKit for the Espressif ESP-32/S2/S3/C3/C5/C6 chips
+************************************************************
+
+** Please ensure serial monitor is set to transmit <newlines>
+
+Message Logs:     Level 0
+Status LED:       Pin 10
+Device Control:   Pin 9
+Sketch Version:   n/a
+HomeSpan Version: 2.1.8
+Arduino-ESP Ver.: 3.3.11
+ESP-IDF Version:  5.5.5
+ESP32 Chip:       ESP32-C3 Rev 4 single-core 4MB Flash
+ESP32 Board:      Espressif ESP32-C3-DevKitC-02
+PWM Resources:    6 channels, 4 timers, max 14-bit duty resolution
+RMT Resources:    2 transmission channels of 48 symbols each
+Touch Sensors:    none
+Sodium Version:   1.0.21  Lib 26.3
+MbedTLS Version:  Mbed TLS 3.6.6
+Sketch Compiled:  Sep  6 2026 10:57:29
+Partition:        ota_0
+HS Watchdog:      DISABLED
+IDLE-0 Watchdog:  DISABLED
+Reset Reason:     USB peripheral
+MAC Address:      AC:A7:04:92:57:E4
+Interface:        WIFI
+Loop Task:        Core-0, Priority=1
+Auto-Poll Task:   N/A
+Device Name:      Clim Atlantic
+
+Updating HomeKit fan speed to 0%
+Updating HomeKit current temperature to 16
+Updating HomeKit target temperature to 16
+
+*** HomeSpan Info ***
+
+➤ Accessory:  AID=1
+   ➟ Service AccessoryInformation:  IID=1, UUID="3E"
+      ⇨ Characteristic Identify(1):  IID=2, UUID="14", Perms=PW
+   ➟ Service Thermostat:  IID=3, UUID="4A"
+      ⇨ Characteristic CurrentHeatingCoolingState(0):  IID=4, UUID="F", Perms=PR+EV, Range=[0,2], EV=()
+      ⇨ Characteristic TargetHeatingCoolingState(0):  IID=5, UUID="33", Perms=PR+PW+EV, Range=[0,3], EV=()
+      ⇨ Characteristic CurrentTemperature(16):  IID=6, UUID="11", Perms=PR+EV, Range=[0,100], EV=()
+      ⇨ Characteristic TargetTemperature(16):  IID=7, UUID="35", Perms=PR+PW+EV, Custom-Range=[16,30,1], EV=()
+      ⇨ Characteristic TemperatureDisplayUnits(0):  IID=8, UUID="36", Perms=PR+PW+EV, Range=[0,1], EV=()
+      ⇨ Characteristic RotationSpeed(0):  IID=9, UUID="29", Perms=PR+PW+EV, Custom-Range=[0,100,25], EV=()
+          *** WARNING #1!  Service does not support this Characteristic ***
+      ⇨ Characteristic SwingMode(0):  IID=10, UUID="B6", Perms=PR+PW+EV, Range=[0,1], EV=()
+          *** WARNING #2!  Service does not support this Characteristic ***
+
+Service                             UUID         AID  IID  Update  Loop  Button  Linked Services
+------------------------------  --------  ----------  ---  ------  ----  ------  ---------------
+AccessoryInformation                  3E           1    1      NO    NO      NO  -
+Thermostat                            4A           1    3     YES    NO      NO  -
+
+Configured as Bridge: NO
+
+Database Validation:  Warnings=2, Errors=0
+
+*** End Info ***
+
+Accessory ID:      81:BB:FC:39:07:E2                               LTPK: 601D2EC88D9D9F40913AB34F8455B601D5CCFB4BEABF7E61A3BAE43D4CBA72B2
+Paired Controller: 14D4B78E-CCC1-41A1-BE2E-2439F9E1DD5C   (admin)  LTPK: 8AE61BB2816DAEB8351A1E5CE20852409E61BBCDD4E794E0CC7330101044557B
+Paired Controller: 46052880-5A0F-4586-9411-EDB541D4C828 (regular)  LTPK: 9C52ADA1CC65953E039C1AFB0B8BA4D9112F0BE01240928E8624CD06E4DA309C
+
+Accessory configuration number: 1
+
+Clim Atlantic is READY!
+
+Trying to connect to Alex_IOT.  Waiting 5 sec...
+updating HomeKit current temperature to 25
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+Received IPv4 Address: 192.168.12.71
+WiFi Connected! (RSI=-48  BSSID=2E:B9:31:07:8F:CB)
+
+Starting MDNS...
+
+HostName:      Atlantic-81BBFC3907E2.local:80
+Display Name:  Clim Atlantic
+Model Name:    HomeSpan-ESP32
+Setup ID:      HSPN
+
+Starting OTA Server:    Clim Atlantic
+Authorization Password: DISABLED!
+Auto Rollback:          Disabled
+
+Web Logging enabled at http://Atlantic-81BBFC3907E2.local:80/status with max number of entries=50
+
+Starting HAP Server on port 80...
+
+
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
+<-- 0 A0 0 6 19 A0 1 20   mSrc: 0 mDst: 32 mType: 0 write: 0 login: 1 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:10 cTemp:0 acError:0 
+<-- 20 80 0 6 19 0 33 0   mSrc: 32 mDst: 0 mType: 0 write: 0 login: 0 unknown: 1 onOff: 0 temp: 25, mode: 3 cP:1 uM:0 cTemp:25 acError:0 
