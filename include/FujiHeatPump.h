@@ -80,7 +80,7 @@ class FujiHeatPump
     bool            controllerIsPrimary = true;  
     bool            seenSecondaryController = false;  
     bool            controllerLoggedIn = false; 
-    unsigned long   lastFrameReceived = 0;
+    unsigned long   lastFrameReceived;
     
     byte            updateFields;
     FujiFrame       updateState;
@@ -91,6 +91,7 @@ class FujiHeatPump
     void printFrame(byte buf[8], FujiFrame ff);
     
     bool pendingFrame = false;
+    bool loggedIn = false;
   public:
     void connect(HardwareSerial *serial, bool secondary);
     void connect(HardwareSerial *serial, bool secondary, int rxPin, int txPin);
@@ -98,6 +99,7 @@ class FujiHeatPump
     bool waitForFrame();
     void sendPendingFrame();
     bool isBound();
+    inline bool isLoggedIn() { return loggedIn; }
     bool updatePending();
     
     void setOnOff(bool o);

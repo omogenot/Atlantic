@@ -32,7 +32,7 @@ void FujiHeatPump::encodeFrame(FujiFrame ff){
 
     memset(writeBuf, 0, 8);
 
-    writeBuf[0] = ff.messageSource;
+    writeBuf[0] = writeBuf[7] = ff.messageSource;
 
     writeBuf[1] &= 0b10000000;
     writeBuf[1] |= ff.messageDest & 0b01111111;
@@ -108,6 +108,7 @@ void FujiHeatPump::printFrame(byte buf[8], FujiFrame ff) {
 
 void FujiHeatPump::sendPendingFrame() {
     if(pendingFrame && (millis() - lastFrameReceived) > 50) {
+        Serial.printf("%08d --> Sending\r\n", millis());
         _serial->write(writeBuf, 8);
         _serial->flush();
         pendingFrame = false;
@@ -120,41 +121,30 @@ void FujiHeatPump::sendPendingFrame() {
 bool FujiHeatPump::waitForFrame() {
     FujiFrame ff;
     
-    if(_serial->available() > 0) {
-        if(_serial->readBytes(readBuf,8) < 8) {
-            // skip incomplete frame as soon as we see it, this is probably a timeout error
+    if(_serial->available()) {
+
+        memset(readBuf, 0, 8);
+        int bytesRead = _serial->readBytes(readBuf,8);
+
+        if(bytesRead < 8) {
+            // skip incomplete frame
             return false;
         }
-  
-        for(int i=0;i<8;i++) {  // invert the bits in the frame, the indoor unit sends inverted bits
+        
+        for(int i=0;i<8;i++) {
             readBuf[i] ^= 0xFF;
         }
     
-        ff = decodeFrame(); // decode the frame into a FujiFrame struct for easier processing
+        ff = decodeFrame();
 
         if(debugPrint) {
-            Serial.printf("<-- ");
+            Serial.printf("%08d <-- ", millis());
             printFrame(readBuf, ff);
         }
-
-        if(ff.messageSource == static_cast<byte>(FujiAddress::UNIT)) {  // this is a frame from the indoor unit, we need to respond to it
-//            lastFrameReceived = millis();
-            
-            if(ff.messageType == static_cast<byte>(FujiMessageType::STATUS)){
-                // update our current state with the values from the indoor unit, but only if they are valid values
-                currentState.onOff = ff.onOff;
-                currentState.temperature = (ff.temperature > 16) ? ff.temperature : currentState.temperature; // ignore temp if it is 0-16 (these are invalid readings)
-                currentState.acMode = ff.acMode;
-                currentState.fanMode = ff.fanMode;
-                currentState.swingMode = ff.swingMode;
-                currentState.swingStep = ff.swingStep;
-                currentState.acError = ff.acError;
-                currentState.controllerTemp = (ff.controllerTemp > 1) ? ff.controllerTemp : currentState.controllerTemp; // ignore controller temp if it is 0, 1, or 2 (these are invalid readings)
-            }
-        }
-
-        if(ff.messageDest == controllerAddress){    // this is a frame addressed to us, we need to respond to it
-            lastFrameReceived = millis();           // Keep track of the last time we received a frame addressed to us, so we can send our own frame after a timeout if needed
+        
+        if(ff.messageDest == (controllerAddress & 0xFF)) {
+            lastFrameReceived = millis();
+            loggedIn = (ff.messageDest == controllerAddress);
             
             if(ff.messageType == static_cast<byte>(FujiMessageType::STATUS)){
 
@@ -203,8 +193,8 @@ bool FujiHeatPump::waitForFrame() {
                         
                         ff.messageSource     = controllerAddress;
                         ff.messageDest       = static_cast<byte>(FujiAddress::UNIT);
-                        ff.loginBit          = false;
                         ff.controllerPresent = 1;
+                        ff.loginBit          = true;
                         ff.updateMagic       = 2;
                         ff.unknownBit        = true;
                         ff.writeBit          = 0;
@@ -212,39 +202,40 @@ bool FujiHeatPump::waitForFrame() {
                     
                 }
                 
-                // if we have any updates, set the flags
-                if(updateFields) {
-                    ff.writeBit = 1;
-                }
-                
-                if(updateFields & kOnOffUpdateMask) {
-                    ff.onOff = updateState.onOff;
-                }
-                
-                if(updateFields & kTempUpdateMask) {
-                    ff.temperature = updateState.temperature;
-                }
-                
-                if(updateFields & kModeUpdateMask) {
-                    ff.acMode = updateState.acMode;
-                }
-                
-                if(updateFields & kFanModeUpdateMask) {
-                    ff.fanMode = updateState.fanMode;
-                }
-                
-                if(updateFields & kSwingModeUpdateMask) {
-                    ff.swingMode = updateState.swingMode;
-                }
-                
-                if(updateFields & kSwingStepUpdateMask) {
-                    ff.swingStep = updateState.swingStep;
-                }
+                if (loggedIn) {
+                    // if we have any updates, set the flags
+                    if(updateFields) {
+                        ff.writeBit = 1;
+                    }
+                    
+                    if(updateFields & kOnOffUpdateMask) {
+                        ff.onOff = updateState.onOff;
+                    }
+                    
+                    if(updateFields & kTempUpdateMask) {
+                        ff.temperature = updateState.temperature;
+                    }
+                    
+                    if(updateFields & kModeUpdateMask) {
+                        ff.acMode = updateState.acMode;
+                    }
+                    
+                    if(updateFields & kFanModeUpdateMask) {
+                        ff.fanMode = updateState.fanMode;
+                    }
+                    
+                    if(updateFields & kSwingModeUpdateMask) {
+                        ff.swingMode = updateState.swingMode;
+                    }
+                    
+                    if(updateFields & kSwingStepUpdateMask) {
+                        ff.swingStep = updateState.swingStep;
+                    }
 
-                if(updateFields & kEconomyModeUpdateMask) {
-                    ff.economyMode = updateState.economyMode;
+                    if(updateFields & kEconomyModeUpdateMask) {
+                        ff.economyMode = updateState.economyMode;
+                    }
                 }
-                
                 memcpy(&currentState, &ff, sizeof(FujiFrame));
 
             }
@@ -252,7 +243,7 @@ bool FujiHeatPump::waitForFrame() {
                 // received a login frame OK frame
                 // the primary will send packet to a secondary controller to see if it exists
                 ff.messageSource     = controllerAddress;
-                ff.messageDest       = (controllerIsPrimary) ? static_cast<byte>(FujiAddress::SECONDARY) : static_cast<byte>(FujiAddress::PRIMARY);
+                ff.messageDest       = static_cast<byte>(FujiAddress::SECONDARY);
                 ff.loginBit          = true;
                 ff.controllerPresent = 1;
                 ff.updateMagic       = 0;
@@ -276,21 +267,27 @@ bool FujiHeatPump::waitForFrame() {
             encodeFrame(ff);
 
             if(debugPrint) {
-                Serial.printf("--> ");
+                Serial.printf("%08d --> ", millis());
                 printFrame(writeBuf, ff);
             }
 
             for(int i=0;i<8;i++) {
                 writeBuf[i] ^= 0xFF;
             }
-
+                    
             pendingFrame = true;
+                        
 
         } else if (ff.messageDest == static_cast<byte>(FujiAddress::SECONDARY)) {
             seenSecondaryController = true;
-            currentState.controllerTemp = (ff.controllerTemp > 1) ? ff.controllerTemp : currentState.controllerTemp; // we dont have a temp sensor, use the temp reading from the primary controller
-        } else if (ff.messageSource == static_cast<byte>(FujiAddress::PRIMARY)) {
-            currentState.controllerTemp = (ff.controllerTemp > 1) ? ff.controllerTemp : currentState.controllerTemp; // we dont have a temp sensor, use the temp reading from the primary controller
+            currentState.controllerTemp = ff.controllerTemp; // we dont have a temp sensor, use the temp reading from the secondary controller
+        } else if (ff.messageSource== static_cast<byte>(FujiAddress::PRIMARY)) {
+            seenSecondaryController = true;
+            currentState.onOff = ff.onOff;
+            currentState.temperature = ff.temperature;
+            currentState.acMode = ff.acMode;
+            currentState.fanMode = ff.fanMode;
+            currentState.controllerTemp = ff.controllerTemp; // we dont have a temp sensor, use the temp reading from the secondary controller
         }
         
         return true;
@@ -300,10 +297,10 @@ bool FujiHeatPump::waitForFrame() {
 }
 
 bool FujiHeatPump::isBound() {
-    if((lastFrameReceived != 0) && (millis() - lastFrameReceived < 1000)) {
+    if(millis() - lastFrameReceived < 1000) {
         return true;
     }
-    return false; // if we have been running for more than 10 seconds and have not received a frame, we are not bound
+    return false;
 }
 
 bool FujiHeatPump::updatePending() {
